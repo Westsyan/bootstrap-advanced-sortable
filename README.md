@@ -1,4 +1,4 @@
-# bootstrap-advanced-sortable
+# bootstrap-advanced-sortable.js
 
 #### 介绍
 Bootstrap-table 表头筛选控件
@@ -6,6 +6,14 @@ Bootstrap-table 表头筛选控件
 #### 软件架构
 利用Bootstrap-table特性,在表头添加筛选排序，支持文本搜索，数值搜索，日期搜索，单选和复选。
 
+#### 依赖包
+
+|依赖包|版本|
+|----|----|
+|jQuery|v3.2.1|
+|Bootstrap|v4.5.3|
+|Bootstrap-table|v1.11.1|
+|select2|v4.0.3|
 
 #### 使用说明
 
