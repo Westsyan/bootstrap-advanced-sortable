@@ -33,13 +33,13 @@ Bootstrap-table 表头筛选控件
 与单选功能相同，但可以搜索多个选项
 
 ### 参数说明
-<table>
+<table style="width=1000px">
 <thead>
 <tr><th width="20%">表格参数</th><th width="7%">默认值</th><th>说明</th></tr></thead>
 <tbody><tr><td>data-advanced-sortable</td><td>false</td><td>默认false。设为true开启控件功能</td></tr></tbody>
 </table>
 
-<table>
+<table style="width=1000px">
 <thead>
 <tr><th width="20%">列参数</th><th width="7%">默认值</th><th>说明</th></tr></thead>
 <tbody>
