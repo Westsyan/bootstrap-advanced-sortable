@@ -17,7 +17,7 @@ Bootstrap-table 表头筛选控件
 
 #### 筛选类型说明
 ##### 1.  文本类型（text）
-![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/180315_d76c297b_1497137.png "屏幕截图.png")
+<img src="https://images.gitee.com/uploads/images/2020/1109/180315_d76c297b_1497137.png" width="50%">
 提供模糊搜索功能，根据输入的参数模糊匹配返回对应的结果
 ##### 2.  数值类型(num)
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/180527_852c1664_1497137.png "屏幕截图.png")
@@ -36,6 +36,7 @@ Bootstrap-table 表头筛选控件
 |表格参数|默认值|说明|
 |----|----|----|
 |data-advanced-sortable|false|默认false。设为true开启控件功能|
+
 |列参数|默认值|说明|
 |----|----|----|
 |data-sortable|false|默认false。设为true开启排序功能，bootstrap-advanced-sortable.js控件开启后会覆盖bootstrap-table默认的筛选功能|
