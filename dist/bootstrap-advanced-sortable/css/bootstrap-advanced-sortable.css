@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'icomoon';
-    src:  url('../fonts/icomoon.eot?2bwep6');
-    src:  url('../fonts/icomoon.eot?2bwep6#iefix') format('embedded-opentype'),
+    src: url('../fonts/icomoon.eot?2bwep6');
+    src: url('../fonts/icomoon.eot?2bwep6#iefix') format('embedded-opentype'),
     url('../fonts/icomoon.ttf?2bwep6') format('truetype'),
     url('../fonts/icomoon.woff?2bwep6') format('woff'),
     url('../fonts/icomoon.svg?2bwep6#icomoon') format('svg');
@@ -13,7 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
-    speak: never;
+    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -32,13 +32,14 @@
 .icon-sort:before {
     content: "\e900";
 }
+
 .icon-sort-descending:before {
     content: "\e901";
 }
+
 .icon-sort-ascending:before {
     content: "\e902";
 }
-
 
 
 .my-sortable {
@@ -47,7 +48,7 @@
     justify-content: space-between;
 }
 
-.my-table-sort-icon{
+.my-table-sort-icon {
     border: none;
     border-radius: 3px;
     float: right;
@@ -59,18 +60,18 @@
     overflow: unset;
 }
 
-.my-table-sort-icon:hover{
+.my-table-sort-icon:hover {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    border: 1px solid  #b5b5b5;
+    border: 1px solid #b5b5b5;
     margin: 0;
 }
 
-.sort-box{
+.sort-box {
     position: relative;
 }
 
-.sort-model{
+.sort-model {
     border-radius: 4px;
     position: absolute;
     background-color: white;
@@ -78,17 +79,17 @@
     z-index: 100;
     width: 200px;
 
-    border: 1px solid rgba(0,0,0,.15);
+    border: 1px solid rgba(0, 0, 0, .15);
     -webkit-box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2);
 }
 
-.sort-model-left{
+.sort-model-left {
     left: -7px;
 }
 
-.sort-model-right{
+.sort-model-right {
     right: -7px;
 }
 
@@ -127,47 +128,46 @@
 }
 
 
-
-.sort-model>form>ul>li>a{
+.sort-model > form > ul > li > a {
     padding: 0.5rem 1rem;
     color: black;
     display: block;
 }
 
-.sort-model>form>ul>li:hover{
+.sort-model > form > ul > li:hover {
     background-color: grey;
 }
 
-.sort-model>form>ul>li>a:hover{
+.sort-model > form > ul > li > a:hover {
     color: white;
     text-decoration: none;
 }
 
-.my-multiple-search{
+.my-multiple-search {
     margin-top: 10px;
     padding: 5px 10px;
 }
 
-.sort-model>form>div{
+.sort-model > form > div {
     margin-bottom: 40px;
 }
 
-.sort-model>form>div>input{
+.sort-model > form > div > input {
     height: 35px;
 }
 
-.sort-model>form>div>.btn-sort{
+.sort-model > form > div > .btn-sort {
     padding: 5px 15px;
     margin-top: 5px;
     height: 30px;
     float: right;
 }
 
-.sort-model>form>div>.btn-sort-primary{
+.sort-model > form > div > .btn-sort-primary {
     margin-right: 10px;
 }
 
-.sort-model>form>div>input{
+.sort-model > form > div > input {
     padding: 10px;
 }
 
@@ -176,25 +176,25 @@
 }
 
 .fixed-table-container {
-    border:none;
+    border: none;
 }
 
-.fixed-table-pagination{
+.fixed-table-pagination {
     padding: 10px;
-  /*//  border: 1px solid #ddd;*/
+    /*//  border: 1px solid #ddd;*/
     border-top: none;
 }
 
-.table>thead{
+.table > thead {
     border-top: 1px solid #ddd;
 }
 
-.sort-toolbar,.search-toolbar{
+.sort-toolbar, .search-toolbar {
     display: none;
     padding: 10px;
 }
 
-.btn-remove-sort{
+.btn-remove-sort {
     background-color: #2768ff;
     color: white;
     padding: 5px 15px;
@@ -202,15 +202,16 @@
 
 }
 
-.btn-remove-sort i{
+.btn-remove-sort i {
     display: none;
 }
-.btn-remove-sort:hover{
+
+.btn-remove-sort:hover {
     cursor: pointer;
     color: white;
 }
 
-.btn-remove-sort:hover i{
+.btn-remove-sort:hover i {
     float: right;
     color: white;
     margin-top: -7px;
@@ -219,22 +220,23 @@
     display: unset;
 }
 
-.btn-remove-search{
+.btn-remove-search {
     background-color: #2768ff;
     color: white;
     padding: 5px 15px;
     margin-left: 15px;
 }
 
-.btn-remove-search i{
+.btn-remove-search i {
     display: none;
 }
-.btn-remove-search:hover{
+
+.btn-remove-search:hover {
     cursor: pointer;
     color: white;
 }
 
-.btn-remove-search:hover i{
+.btn-remove-search:hover i {
     float: right;
     color: white;
     margin-top: -7px;
@@ -243,7 +245,7 @@
     display: unset;
 }
 
-.nav-sort{
+.nav-sort {
     display: flex;
     flex-wrap: wrap;
     padding-left: 0;
@@ -312,7 +314,7 @@
     box-shadow: 0 2px 2px 0 rgba(255, 71, 71, 0.14), 0 3px 1px -2px rgba(255, 71, 71, 0.2), 0 1px 5px 0 rgba(255, 71, 71, 0.12);
 }
 
-.sort-input{
+.sort-input {
     border: 1px solid #c8c8c8;
     border-radius: 4px;
     font-weight: 400;
@@ -327,5 +329,9 @@
     background-color: #ffffff;
     background-clip: padding-box;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.my-multiple-search .select2 .selection .select2-selection .select2-selection__arrow {
+    height: 233px;
 }
 
