@@ -17,10 +17,10 @@ Bootstrap-table 表头筛选控件
 
 #### 筛选类型说明
 ##### 1.  文本类型（text）
-<img src="https://images.gitee.com/uploads/images/2020/1109/180315_d76c297b_1497137.png" width="50%" />
+<img src="https://images.gitee.com/uploads/images/2020/1109/180315_d76c297b_1497137.png" width="50%" /><br/>
 提供模糊搜索功能，根据输入的参数模糊匹配返回对应的结果
 ##### 2.  数值类型(num)
-![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/180527_852c1664_1497137.png "屏幕截图.png")
+<img src="https://images.gitee.com/uploads/images/2020/1109/180527_852c1664_1497137.png" width="50%" /><br/>
 提供区间搜索功能，所搜列必须为数值，可以搜索最小值和最大值之间的结果，也可以搜索所有大于最小值或小于最大值的结果。
 ##### 3.  日期类型（date）
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/180820_dfb16921_1497137.png "屏幕截图.png")
