@@ -37,7 +37,7 @@ Bootstrap-table 表头筛选控件
 |----|----|----|
 |data-advanced-sortable|false|默认false。设为true开启控件功能|
 
-|列参数|默认值&nbsp;&nbsp;|说明|
+|列参数|默认值&nbsp;&nbsp;&nbsp;&nbsp;|说明|
 |----|----|----|
 |data-sortable  |  false|默认false。设为true开启排序功能，bootstrap-advanced-sortable.js控件开启后会覆盖bootstrap-table默认的筛选功能|
 |data-search-type|-|可选参数，设置开启搜索功能。可选值：text,num,date,radio,checkbox|
