@@ -16,19 +16,30 @@ Bootstrap-table 表头筛选控件
 |select2|v4.0.3|
 
 #### 筛选类型说明
-1.  文本类型
+#####1.  文本类型（text）
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/180315_d76c297b_1497137.png "屏幕截图.png")
-2.  xxxx
-3.  xxxx
+提供模糊搜索功能，根据输入的参数模糊匹配返回对应的结果
+#####2.  数值类型(num)
+![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/180527_852c1664_1497137.png "屏幕截图.png")
+提供区间搜索功能，所搜列必须为数值，可以搜索最小值和最大值之间的结果，也可以搜索所有大于最小值或小于最大值的结果。
+#####3.  日期类型（date）
+![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/180820_dfb16921_1497137.png "屏幕截图.png")
+提供区间搜索日期功能，使用方法同数值类型。
+#####4.  单选（radio）
+![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/182447_5034e35f_1497137.png "屏幕截图.png")
+如图所示，根据所选项筛选出对应的结果
+#####5.  复选（checkbox）
+![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/182625_0a86a422_1497137.png "屏幕截图.png")
+与单选功能相同，但可以搜索多个选项
 
+### 参数说明
+|表格参数|默认值|说明|
+|----|----|----|
+|data-advanced-sortable|false|默认false。设为true开启控件功能|
 
+|列参数|默认值|说明|
+|----|----|----|
+|data-sortable|false|默认false。设为true开启排序功能，bootstrap-advanced-sortable.js控件开启后会覆盖bootstrap-table默认的筛选功能|
+|data-search-type|-|可选参数，设置开启搜索功能。可选值：text,num,date,radio,checkbox|
+|data-search-select|-|传值参数，只有当搜索类型设为radio和checkbox时才生效，要求输入数组类型。样例：data-search-select=["选项1","选项2","选项3"]|
 
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
