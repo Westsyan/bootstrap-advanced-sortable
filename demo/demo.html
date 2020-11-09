@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" media="screen" href="../dist/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" media="screen" href="../dist/bootstrap-table-master/css/bootstrap-table.css">
+<link rel="stylesheet" media="screen" href="../dist/select2/css/select2.css">
+<link rel="stylesheet" media="screen" href="../dist/bootstrap-advanced-sortable/css/bootstrap-advanced-sortable.css">
+
+<script src="../dist/js/jQuery-3.2.1.js" type="text/javascript"></script>
+<script src="../dist/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+<script src="../dist/bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
+<script src="../dist/bootstrap-table-master/js/bootstrap-table.js" type="text/javascript"></script>
+<script src="../dist/select2/js/select2.js" type="text/javascript"></script>
+<script src="../dist/bootstrap-advanced-sortable/js/bootstrap-advanced-sortable.js" type="text/javascript"></script>
+
+
+<body>
+
+<div style="margin:150px 200px">
+    <table id="table" class="table table-bordered" data-advanced-sortable="true" data-pagination="true" style="width: 1200px">
+        <thead>
+        <tr>
+            <th data-field="text" data-sortable="true" data-search-type="text">文本类型</th>
+            <th data-field="num" data-sortable="true" data-search-type="num">数值类型</th>
+            <th data-field="date" data-sortable="true" data-search-type="date">日期类型</th>
+            <th data-field="radio" data-sortable="true" data-search-type="radio" data-search-select=["选项1","选项2"]>单选</th>
+            <th data-field="checkbox" data-sortable="true" data-search-type="checkbox"
+                data-search-select=["选项1","选项2","选项3","选项4","选项5"]>多选</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+
+<script>
+
+    $(function () {
+        let data = [];
+        for (let i = 1; i < 100; i++) {
+            data.push({
+                text: "测试" + i,
+                num: i,
+                date: "2020-" + (i % 12 + 1) + "-5 1:10:10",
+                radio: "选项" + (i % 2 + 1),
+                checkbox: "选项" + (i % 5 + 1)
+            })
+        }
+        $("#table").bootstrapTable({data: data})
+    })
+</script>
+
+
+</body>
+</html>
