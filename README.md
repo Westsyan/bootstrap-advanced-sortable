@@ -41,17 +41,11 @@ Bootstrap-table 表头筛选控件
 
 <table>
 <thead>
-<tr><th>列参数</th><th>默认值</th><th>说明</th></tr></thead>
+<tr><th width="20%">列参数</th><th width="15%">默认值</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td>data-sortable</td><td>false</td><td>默认false。设为true开启排序功能，bootstrap-advanced-sortable.js控件开启后会覆盖bootstrap-table默认的筛选功能</td></tr>
 <tr><td>data-search-type</td><td>-</td><td>可选参数，设置开启搜索功能。可选值：text,num,date,radio,checkbox。</td></tr>
 <tr><td>data-search-select</td><td>-</td><td>传值参数，只有当搜索类型设为radio和checkbox时才生效，要求输入数组类型。样例：data-search-select=["选项1","选项2","选项3"]</td></tr>
 </tbody>
 </table>
-
-|列参数|默认值|说明|
-|----|----|----|
-|data-sortable  |  false|默认false。设为true开启排序功能，bootstrap-advanced-sortable.js控件开启后会覆盖bootstrap-table默认的筛选功能|
-|data-search-type|-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|可选参数，设置开启搜索功能。可选值：text,num,date,radio,checkbox|
-|data-search-select|-|传值参数，只有当搜索类型设为radio和checkbox时才生效，要求输入数组类型。样例：data-search-select=["选项1","选项2","选项3"]|
 
