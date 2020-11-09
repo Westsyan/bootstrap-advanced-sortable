@@ -15,9 +15,9 @@ Bootstrap-table 表头筛选控件
 |Bootstrap-table|v1.11.1|
 |select2|v4.0.3|
 
-#### 使用说明
-
-1.  xxxx
+#### 筛选类型说明
+1.  文本类型
+![输入图片说明](https://images.gitee.com/uploads/images/2020/1109/180315_d76c297b_1497137.png "屏幕截图.png")
 2.  xxxx
 3.  xxxx
 
