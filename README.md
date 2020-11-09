@@ -35,13 +35,13 @@ Bootstrap-table 表头筛选控件
 ### 参数说明
 <table>
 <thead>
-<tr><th>表格参数</th><th>默认值</th><th>说明</th></tr></thead>
+<tr><th width="20%">表格参数</th><th width="7%">默认值</th><th>说明</th></tr></thead>
 <tbody><tr><td>data-advanced-sortable</td><td>false</td><td>默认false。设为true开启控件功能</td></tr></tbody>
 </table>
 
 <table>
 <thead>
-<tr><th width="16%">列参数</th><th width="10%">默认值</th><th>说明</th></tr></thead>
+<tr><th width="20%">列参数</th><th width="7%">默认值</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td>data-sortable</td><td>false</td><td>默认false。设为true开启排序功能，bootstrap-advanced-sortable.js控件开启后会覆盖bootstrap-table默认的筛选功能</td></tr>
 <tr><td>data-search-type</td><td>-</td><td>可选参数，设置开启搜索功能。可选值：text,num,date,radio,checkbox。</td></tr>
