@@ -19,8 +19,7 @@
         _getCaret = BootstrapTable.prototype.getCaret,
         _initServer = BootstrapTable.prototype.initServer,
         _initHeader = BootstrapTable.prototype.initHeader,
-        _initContainer = BootstrapTable.prototype.initContainer,
-        _toggleColumn = BootstrapTable.prototype.toggleColumn;
+        _initContainer = BootstrapTable.prototype.initContainer;
 
     BootstrapTable.prototype.initContainer = function () {
         if (this.options.advancedSortable) {
@@ -107,7 +106,6 @@
                                         </button>                                     
                                      </div>`)
             });
-            console.log(this.options.height === undefined)
 
             if(this.options.height === undefined){
 
@@ -182,6 +180,11 @@
                 contentType: this.options.contentType,
                 dataType: this.options.dataType,
                 success: function (res) {
+                    if(res.rows.length === 0 && res.total !== 0){
+                        that.options.pageNumber = parseInt(res.total/10) +1
+                        that.updatePagination()
+                    }
+
                     res = calculateObjectValue(that.options, that.options.responseHandler, [res], res);
 
                     that.load(res);
@@ -424,7 +427,6 @@
                 $(this).data(visibleColumns[$(this).data('field')]);
             });
 
-
             let sort_btn_toolbar = $(".sort-btn-toolbar").text();
             let search_btn_toolbar = $(".search-btn-toolbar").text();
             if(sort_btn_toolbar === "" && search_btn_toolbar === ""){
@@ -438,7 +440,6 @@
                 _searchType[v.field] = v.searchType;
                 _columns[v.field] = v;
             })
-
 
             this.$container.off('click', '.sort-btn').on('click', '.sort-btn', function (event) {
                 if (that.options.sortable) {
@@ -666,6 +667,7 @@
                     let data = that.options.data;
                     that.data =  getSearchData(data,search);
                 }
+                $(".sort-model").hide()
                 that.onSort(event)
             })
 

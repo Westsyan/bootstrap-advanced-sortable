@@ -1980,7 +1980,7 @@
                 var n = m.offset();
                 l.top -= n.top, l.left -= n.left, c || d || (e = "below"), k || !j || c ? !j && k && c && (e = "below") : e = "above", ("above" == e || c && "below" !== e) && (l.top = g.top - n.top - h.height), null != e && (this.$dropdown.removeClass("select2-dropdown--below select2-dropdown--above").addClass("select2-dropdown--" + e), this.$container.removeClass("select2-container--below select2-container--above").addClass("select2-container--" + e)), this.$dropdownContainer.css(l)
             }, c.prototype._resizeDropdown = function () {
-                var a = {width: this.$container.outerWidth(!1) + "px"};
+                var a = {width: this.$container.find(".select2-selection").outerWidth(!1) + "px"};
                 this.options.get("dropdownAutoWidth") && (a.minWidth = a.width, a.position = "relative", a.width = "auto"), this.$dropdown.css(a)
             }, c.prototype._showDropdown = function (a) {
                 this.$dropdownContainer.appendTo(this.$dropdownParent), this._positionDropdown(), this._resizeDropdown()

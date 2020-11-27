@@ -1,10 +1,10 @@
 (function ($) {
     'use strict';
 
-    let ascIcon = "mdi mdi-sort-ascending";
-    let descIcon = "mdi mdi-sort-descending";
-    let sortIcon = `<i class="mdi mdi-sort"></i>`
-    let closeIcon = `<i class="mdi mdi-close"></i>`
+    let ascIcon = "icon icon-sort-ascending";
+    let descIcon = "icon icon-sort-descending";
+    let sortIcon = `<i class="icon icon-sort"></i>`
+    let closeIcon = `<i class="icon icon-close"></i>`
 
     $.extend($.fn.bootstrapTable.defaults, {
         advancedSortable: false,
@@ -70,7 +70,6 @@
         }
     };
 
-
     BootstrapTable.prototype.onSort = function (event) {
         if (this.options.advancedSortable) {
 
@@ -107,7 +106,6 @@
                                         </button>                                     
                                      </div>`)
             });
-            console.log(this.options.height === undefined)
 
             if(this.options.height === undefined){
 
@@ -182,6 +180,11 @@
                 contentType: this.options.contentType,
                 dataType: this.options.dataType,
                 success: function (res) {
+                    if(res.rows.length === 0 && res.total !== 0){
+                        that.options.pageNumber = parseInt(res.total/10) +1
+                        that.updatePagination()
+                    }
+
                     res = calculateObjectValue(that.options, that.options.responseHandler, [res], res);
 
                     that.load(res);
@@ -246,12 +249,14 @@
                         isValid = isValid && v[key].indexOf(d) !== -1
                     })
                 } else if (st === "radio") {
-                    isValid = isValid && v[key] == maps["data"]
+                    isValid = isValid && v[key] === maps["data"]
                 } else if (st === "checkbox") {
                     let fieldData = maps["data"];
+                    let checkboxValid = false
                     $.each(fieldData, (f, d) => {
-                        isValid = isValid && v[key] == d
+                        checkboxValid = checkboxValid || v[key] === d
                     })
+                    isValid = isValid && checkboxValid
                 } else if (st === "num") {
                     let min = maps.data["min"].replace(/,/g,'');
                     let max = maps.data["max"].replace(/,/g,'');
@@ -422,9 +427,12 @@
                 $(this).data(visibleColumns[$(this).data('field')]);
             });
 
-
-            that.$advancedSortable.html("<div class='sort-toolbar'>Sort ： <span class='sort-btn-toolbar'></span></div>" +
-                "<div class='search-toolbar'>Filter ：  <span class='search-btn-toolbar'></span></div>");
+            let sort_btn_toolbar = $(".sort-btn-toolbar").text();
+            let search_btn_toolbar = $(".search-btn-toolbar").text();
+            if(sort_btn_toolbar === "" && search_btn_toolbar === ""){
+                that.$advancedSortable.html("<div class='sort-toolbar'>Sort ： <span class='sort-btn-toolbar'></span></div>" +
+                    "<div class='search-toolbar'>Filter ：  <span class='search-btn-toolbar'></span></div>");
+            }
 
             let _searchType = {};
             let _columns = {}
@@ -439,21 +447,11 @@
                     let field = $(this).parents("th").attr("data-field");
                     let sort_model =  sort_box.find(".sort-model")
 
-
-
-
                     if (sort_model.length === 0) {
                         let height = $(this).height() + 5;
-
-
                         let search = that.searchText !== undefined ? JSON.parse(that.searchText) : {};
-
                         let _searchText =  search[field] !== undefined?search[field].data : "";
-
-
                         let searchT = _searchType[field];
-
-
                         let buttonHtml = `<button type="button" class="btn-sort btn-sort-danger">Cancel</button>
                                             <button type="button" class="btn-sort btn-sort-primary">Search</button>`;
                         let sortHtml = ` <ul class="nav-sort">
@@ -466,19 +464,17 @@
                                     <form>
                                         ${sortHtml}
                                         <div class="my-multiple-search">
-                                            <input type="text" class="sort-input" id="${field}-search-min"  placeholder="最小值">
-                                            <input type="text" class="sort-input" id="${field}-search-max"  placeholder="最大值" style="margin-top: 10px">
+                                            <input type="text" class="sort-input" id="${field}-search-min"  placeholder="min">
+                                            <input type="text" class="sort-input" id="${field}-search-max"  placeholder="max" style="margin-top: 10px">
                                             ${buttonHtml}
                                         </div>
                                     </form>
                                 </div>`
                             sort_box.append(html);
-
                             let min = _searchText !== "" ? _searchText["min"] : "";
                             let max = _searchText !== "" ? _searchText["max"] : "";
                             $("#" + field + "-search-min").val(min);
                             $("#" + field + "-search-max").val(max);
-
                         } else if (searchT === "date") {
                             let html = `<div class="sort-model" style="margin-top: ${height}px;">
                                     <form>
@@ -532,18 +528,16 @@
                             $("#" + field + "-search").select2({
                                 data: info["searchSelect"]
                             }).val(_searchText).select2({width: '178'})
-
-
-/*                            $("#" + field + "-search").on('select2:close', function (evt) {
-                                var uldiv = $(this).siblings('span.select2').find('ul')
-                                var count = $(this).select2('data').length
-                                if (count == 0) {
-                                    uldiv.html("")
-                                } else {
-                                    uldiv.html("<li>" + count + " items selected</li>")
-                                    //uldiv.html("<li>已选中 " + count + " 项</li>")
-                                }
-                            })*/
+                            /*                            $("#" + field + "-search").on('select2:close', function (evt) {
+                                                            var uldiv = $(this).siblings('span.select2').find('ul')
+                                                            var count = $(this).select2('data').length
+                                                            if (count == 0) {
+                                                                uldiv.html("")
+                                                            } else {
+                                                                uldiv.html("<li>" + count + " items selected</li>")
+                                                                //uldiv.html("<li>已选中 " + count + " 项</li>")
+                                                            }
+                                                        })*/
 
                         } else if (searchT === "text") {
                             let html = `<div class="sort-model" style="margin-top: ${height}px;">
@@ -566,22 +560,14 @@
                             sort_box.append(html);
                         }
                         sort_box.find(".sort-model").hide();
-
                         sort_model =  sort_box.find(".sort-model")
-
                         let leftWidth = sort_box[0].offsetLeft;
-
                         if(leftWidth < 250){
                             sort_model.addClass("sort-model-left")
                         }else{
                             sort_model.addClass("sort-model-right")
                         }
-
-
-
-
                     }
-
 
                     if(sort_box.find(".sort-model").is(":hidden")){
                         $(".sort-model").hide();
@@ -589,8 +575,6 @@
                     }else{
                         sort_box.find(".sort-model").hide();
                     }
-
-
 
                     //$(this).after(html);
                     //$(this).next().show();
@@ -610,7 +594,7 @@
                 })
                 let btn = `<buuton class="btn-sort btn-remove-sort btn-sort-position" value="${field}">${title} Asc ${closeIcon}</buuton>`
                 that.$advancedSortable.find(".sort-btn-toolbar").html(btn);
-               // $("#toolbar").find(".sort-btn-toolbar").html(btn);
+                // $("#toolbar").find(".sort-btn-toolbar").html(btn);
                 $(".sort-toolbar").show();
                 that.onSort(event)
             })
@@ -627,7 +611,7 @@
                 })
                 let btn = `<buuton class="btn-sort btn-remove-sort btn-sort-position" value="${field}">${title} Desc  ${closeIcon}</buuton>`
                 that.$advancedSortable.find(".sort-btn-toolbar").html(btn);
-             //   $("#toolbar").find(".sort-btn-toolbar").html(btn);
+                //   $("#toolbar").find(".sort-btn-toolbar").html(btn);
                 $(".sort-toolbar").show();
                 that.onSort(event)
             })
@@ -677,13 +661,14 @@
                     searchToolbar += btn
                 })
                 that.$advancedSortable.find(".search-btn-toolbar").html(searchToolbar);
-            //    $("#toolbar").find(".search-btn-toolbar").html(searchToolbar);
+                //    $("#toolbar").find(".search-btn-toolbar").html(searchToolbar);
                 $(".search-toolbar").show();
                 that.searchText = JSON.stringify(search);
                 if (that.options.sidePagination !== 'server') {
                     let data = that.options.data;
                     that.data =  getSearchData(data,search);
                 }
+                $(".sort-model").hide()
                 that.onSort(event)
             })
 
