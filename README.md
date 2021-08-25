@@ -49,3 +49,74 @@ Bootstrap-table 表头筛选控件
 </tbody>
 </table>
 
+#### 服务端分页传参说明
+##### 1.客户端分页
+sidePagination设为"client"时为客户端分页，只要把相应的数据以JSON格式传到前端即可，由前端JS来实现排序，搜索功能。
+##### 2.服务端分页
+sidePagination设为"server"时为服务端分页，这时需要与服务端交互才能实现排序，搜索功能。<br/>
+当选择服务器分页时，客户端会向服务端传输五个参数：<br/>
+- limit ： Int类型,页面展示数据条数；
+- offest ： Int类型，当前页起始行数；
+- order ： String类型，排序方式，asc:顺序，desc逆序；
+- search ： Option[String]类型,默认为空值。进行搜索时，会传输JSON字符串回服务端，样例：<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":{"field":"id","searchType":"text","data":"100"},"name":{"field":"name","searchType":"text","data":"200"}}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有四个参数，服务端解析这个json字符串获取相应的结果，然后截取offest - offest+limit 之间的数据传输的客户端进行展示；
+- sort ： Option[String]类型，以sort列进行排序，默认为空值。
+示例代码（Scala）：
+
+```
+  case class PageData(limit: Int, offset: Int, order: String, search: Option[String], sort: Option[String])
+
+  val pageForm: Form[PageData] = Form(
+    mapping(
+      "limit" -> number,
+      "offset" -> number,
+      "order" -> text,
+      "search" -> optional(text),
+      "sort" -> optional(text)
+    )(PageData.apply)(PageData.unapply)
+  )
+
+def dealMapDataByPage(page: PageData) = {
+    val searchX = page.search match {
+      case None => 获取初始数据代码
+      case Some(y) => 筛选数据代码
+    }
+    val sortX = page.sort match {
+      case None => searchX
+      case Some(y) => 以列进行排序
+    }
+    val orderX = page.order match {
+      case "asc" => sortX
+      case "desc" => sortX.reverse
+    }
+    //返回值
+    orderX
+  }
+
+```
+前端JS代码：
+
+```
+                $('#table').bootstrapTable({
+                    method: 'post',
+                    url: "/getData",
+                    sidePagination: "server",
+                    contentType: "application/x-www-form-urlencoded",
+                    columns:[{
+                        field:"testText",
+                        title:"TestText",
+                        sortable:"true",
+                        searchType:"text"
+                    },{
+                        field:"testRadio",
+                        title:"TestRadio",
+                        sortable:"true",
+                        searchType:"radio",
+                        searchSelect:["test1","test2","test3"]
+                    }]
+                });
+```
+
+
+
