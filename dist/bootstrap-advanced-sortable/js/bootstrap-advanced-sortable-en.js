@@ -270,10 +270,11 @@
                         isValid = false
                     }
                 } else if (st === "date") {
-                    let min = maps.data["min"];
-                    let max = maps.data["max"];
-                    let minDate = new Date(maps.data["min"]);
-                    let maxDate = new Date(maps.data["max"]);
+                    //因为input date 这个方法只能得到2020-12-11这种格式的日期，得不到具体时间，new Date()初始化默认是8点，可以将格式换为2020/12/11，或者在后面加上 00:00:00
+                    let min = maps.data["min"].replace(/-/g,"/");
+                    let max = maps.data["max"].replace(/-/g,"/");
+                    let minDate = new Date(min);
+                    let maxDate = new Date(max);
                     let date = new Date(v[key]);
                     if (min !== "" && max !== "") {
                         isValid = isValid && (date <= maxDate && date >= minDate)
@@ -455,8 +456,8 @@
                         let buttonHtml = `<button type="button" class="btn-sort btn-sort-danger">Cancel</button>
                                             <button type="button" class="btn-sort btn-sort-primary">Search</button>`;
                         let sortHtml = ` <ul class="nav-sort">
-                                            <li><a class="sort-asc" href="#"><i class="${ascIcon}"></i> Ascending</a></li>
-                                            <li><a class="sort-desc" href="#"><i class="${descIcon}"></i> Descending</a></li>
+                                            <li><a class="sort-asc" href="javascrupt:;"><i class="${ascIcon}"></i> Ascending</a></li>
+                                            <li><a class="sort-desc" href="javascrupt:;"><i class="${descIcon}"></i> Descending</a></li>
                                         </ul>`;
 
                         if (searchT === "num") {
@@ -571,8 +572,10 @@
 
                     if(sort_box.find(".sort-model").is(":hidden")){
                         $(".sort-model").hide();
+                        $(".sort-box").css("position","relative");
                         sort_box.find(".sort-model").show();
                     }else{
+                        $(".sort-box").removeAttr("style");
                         sort_box.find(".sort-model").hide();
                     }
 
@@ -596,6 +599,7 @@
                 that.$advancedSortable.find(".sort-btn-toolbar").html(btn);
                 // $("#toolbar").find(".sort-btn-toolbar").html(btn);
                 $(".sort-toolbar").show();
+                $(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
@@ -613,6 +617,7 @@
                 that.$advancedSortable.find(".sort-btn-toolbar").html(btn);
                 //   $("#toolbar").find(".sort-btn-toolbar").html(btn);
                 $(".sort-toolbar").show();
+                $(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
@@ -668,12 +673,13 @@
                     let data = that.options.data;
                     that.data =  getSearchData(data,search);
                 }
-                $(".sort-model").hide()
+                $(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
             this.$container.off('click', '.btn-sort-danger').on('click', '.btn-sort-danger', function (event) {
-                $(".sort-model").hide()
+                $(".sort-model").hide();
+                $(".sort-box").removeAttr("style");
             })
 
             this.$container.off('click', '.btn-remove-search').on('click', '.btn-remove-search', function (event) {

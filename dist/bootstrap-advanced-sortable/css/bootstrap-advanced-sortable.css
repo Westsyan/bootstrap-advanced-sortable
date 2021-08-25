@@ -41,11 +41,11 @@
     content: "\e902";
 }
 
-
 .my-sortable {
     padding-right: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .my-table-sort-icon {
@@ -332,6 +332,6 @@
 }
 
 .my-multiple-search .select2 .selection .select2-selection .select2-selection__arrow {
-    height: 233px;
+    top: 96px;
 }
 

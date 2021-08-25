@@ -107,6 +107,7 @@
                                      </div>`)
             });
 
+
             if(this.options.height === undefined){
 
             }else{
@@ -270,10 +271,11 @@
                         isValid = false
                     }
                 } else if (st === "date") {
-                    let min = maps.data["min"];
-                    let max = maps.data["max"];
-                    let minDate = new Date(maps.data["min"]);
-                    let maxDate = new Date(maps.data["max"]);
+                    //因为input date 这个方法只能得到2020-12-11这种格式的日期，得不到具体时间，new Date()初始化默认是8点，可以将格式换为2020/12/11，或者在后面加上 00:00:00
+                    let min = maps.data["min"].replace(/-/g,"/");
+                    let max = maps.data["max"].replace(/-/g,"/");
+                    let minDate = new Date(min);
+                    let maxDate = new Date(max);
                     let date = new Date(v[key]);
                     if (min !== "" && max !== "") {
                         isValid = isValid && (date <= maxDate && date >= minDate)
@@ -427,6 +429,7 @@
                 $(this).data(visibleColumns[$(this).data('field')]);
             });
 
+
             let sort_btn_toolbar = $(".sort-btn-toolbar").text();
             let search_btn_toolbar = $(".search-btn-toolbar").text();
             if(sort_btn_toolbar === "" && search_btn_toolbar === ""){
@@ -440,6 +443,7 @@
                 _searchType[v.field] = v.searchType;
                 _columns[v.field] = v;
             })
+
 
             this.$container.off('click', '.sort-btn').on('click', '.sort-btn', function (event) {
                 if (that.options.sortable) {
@@ -455,8 +459,8 @@
                         let buttonHtml = `<button type="button" class="btn-sort btn-sort-danger">取消</button>
                                           <button type="button" class="btn-sort btn-sort-primary">搜索</button>`;
                         let sortHtml = ` <ul class="nav-sort">
-                                            <li><a class="sort-asc" href="#"><i class="${ascIcon}"></i> 升序排序</a></li>
-                                            <li><a class="sort-desc" href="#"><i class="${descIcon}"></i> 降序排序</a></li>
+                                            <li><a class="sort-asc" href="javascrupt:;"><i class="${ascIcon}"></i> 升序排序</a></li>
+                                            <li><a class="sort-desc" href="javascrupt:;"><i class="${descIcon}"></i> 降序排序</a></li>
                                         </ul>`;
                         if (searchT === "num") {
                             let html = `<div class="sort-model" style="margin-top: ${height}px;">
@@ -527,16 +531,16 @@
                             $("#" + field + "-search").select2({
                                 data: info["searchSelect"]
                             }).val(_searchText).select2({width: '178'})
-/*                            $("#" + field + "-search").on('select2:close', function (evt) {
-                                var uldiv = $(this).siblings('span.select2').find('ul')
-                                var count = $(this).select2('data').length
-                                if (count == 0) {
-                                    uldiv.html("")
-                                } else {
-                                    uldiv.html("<li>" + count + " items selected</li>")
-                                //    uldiv.html("<li>已选中 " + count + " 项</li>")
-                                }
-                            })*/
+                            /*                            $("#" + field + "-search").on('select2:close', function (evt) {
+                                                            var uldiv = $(this).siblings('span.select2').find('ul')
+                                                            var count = $(this).select2('data').length
+                                                            if (count == 0) {
+                                                                uldiv.html("")
+                                                            } else {
+                                                                uldiv.html("<li>" + count + " items selected</li>")
+                                                            //    uldiv.html("<li>已选中 " + count + " 项</li>")
+                                                            }
+                                                        })*/
 
                         } else if (searchT === "text") {
                             let html = `<div class="sort-model" style="margin-top: ${height}px;">
@@ -549,6 +553,9 @@
                                     </form>
                                 </div>`
                             sort_box.append(html);
+
+
+
                             $("#" + field + "-search").val(_searchText);
                         } else {
                             let html = `<div class="sort-model" style="margin-top: ${height}px;">
@@ -568,10 +575,13 @@
                         }
                     }
 
+
                     if(sort_box.find(".sort-model").is(":hidden")){
                         $(".sort-model").hide();
+                        $(".sort-box").css("position","relative");
                         sort_box.find(".sort-model").show();
                     }else{
+                        $(".sort-box").removeAttr("style");
                         sort_box.find(".sort-model").hide();
                     }
 
@@ -593,8 +603,9 @@
                 })
                 let btn = `<buuton class="btn-sort btn-remove-sort btn-sort-position" value="${field}">${title} 升序 ${closeIcon}</buuton>`
                 that.$advancedSortable.find(".sort-btn-toolbar").html(btn);
-               // $("#toolbar").find(".sort-btn-toolbar").html(btn);
+                // $("#toolbar").find(".sort-btn-toolbar").html(btn);
                 $(".sort-toolbar").show();
+                $(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
@@ -610,8 +621,9 @@
                 })
                 let btn = `<buuton class="btn-sort btn-remove-sort btn-sort-position" value="${field}">${title} 降序  ${closeIcon}</buuton>`
                 that.$advancedSortable.find(".sort-btn-toolbar").html(btn);
-             //   $("#toolbar").find(".sort-btn-toolbar").html(btn);
+                //   $("#toolbar").find(".sort-btn-toolbar").html(btn);
                 $(".sort-toolbar").show();
+                $(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
@@ -660,19 +672,20 @@
                     searchToolbar += btn
                 })
                 that.$advancedSortable.find(".search-btn-toolbar").html(searchToolbar);
-            //    $("#toolbar").find(".search-btn-toolbar").html(searchToolbar);
+                //    $("#toolbar").find(".search-btn-toolbar").html(searchToolbar);
                 $(".search-toolbar").show();
                 that.searchText = JSON.stringify(search);
                 if (that.options.sidePagination !== 'server') {
                     let data = that.options.data;
                     that.data =  getSearchData(data,search);
                 }
-                $(".sort-model").hide()
+                $(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
             this.$container.off('click', '.btn-sort-danger').on('click', '.btn-sort-danger', function (event) {
-                $(".sort-model").hide()
+                $(".sort-model").hide();
+                $(".sort-box").removeAttr("style");
             })
 
             this.$container.off('click', '.btn-remove-search').on('click', '.btn-remove-search', function (event) {
