@@ -23,10 +23,12 @@
 
     BootstrapTable.prototype.initContainer = function () {
         if (this.options.advancedSortable) {
+
+
             this.$container = $([
                 '<div class="bootstrap-table">',
                 '<div class="fixed-table-toolbar"></div>',
-                '<div class="advanced-sortavle-toolbar"></div>',
+                '<div class="advanced-sortavle-toolbar"  ></div>',
                 this.options.paginationVAlign === 'top' || this.options.paginationVAlign === 'both' ?
                     '<div class="fixed-table-pagination" style="clear: both;"></div>' :
                     '',
@@ -604,8 +606,8 @@
                 let btn = `<buuton class="btn-sort btn-remove-sort btn-sort-position" value="${field}">${title} 升序 ${closeIcon}</buuton>`
                 that.$advancedSortable.find(".sort-btn-toolbar").html(btn);
                 // $("#toolbar").find(".sort-btn-toolbar").html(btn);
-                $(".sort-toolbar").show();
-                $(".sort-box").removeAttr("style");
+                that.$advancedSortable.find(".sort-toolbar").show();
+                that.$advancedSortable.find(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
@@ -622,8 +624,8 @@
                 let btn = `<buuton class="btn-sort btn-remove-sort btn-sort-position" value="${field}">${title} 降序  ${closeIcon}</buuton>`
                 that.$advancedSortable.find(".sort-btn-toolbar").html(btn);
                 //   $("#toolbar").find(".sort-btn-toolbar").html(btn);
-                $(".sort-toolbar").show();
-                $(".sort-box").removeAttr("style");
+                that.$advancedSortable.find(".sort-toolbar").show();
+                that.$advancedSortable.find(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
@@ -631,7 +633,7 @@
                 that.options.sortName = undefined;
                 that.options.sortOrder = "asc";
                 $(this).remove();
-                $(".sort-toolbar").hide();
+                that.$advancedSortable.find(".sort-toolbar").hide();
                 that.onSort(event)
             })
 
@@ -673,19 +675,19 @@
                 })
                 that.$advancedSortable.find(".search-btn-toolbar").html(searchToolbar);
                 //    $("#toolbar").find(".search-btn-toolbar").html(searchToolbar);
-                $(".search-toolbar").show();
+                that.$advancedSortable.find(".search-toolbar").show();
                 that.searchText = JSON.stringify(search);
                 if (that.options.sidePagination !== 'server') {
                     let data = that.options.data;
                     that.data =  getSearchData(data,search);
                 }
-                $(".sort-box").removeAttr("style");
+                that.$advancedSortable.find(".sort-box").removeAttr("style");
                 that.onSort(event)
             })
 
             this.$container.off('click', '.btn-sort-danger').on('click', '.btn-sort-danger', function (event) {
-                $(".sort-model").hide();
-                $(".sort-box").removeAttr("style");
+                that.$advancedSortable.find(".sort-model").hide();
+                that.$advancedSortable.find(".sort-box").removeAttr("style");
             })
 
             this.$container.off('click', '.btn-remove-search').on('click', '.btn-remove-search', function (event) {
@@ -700,7 +702,7 @@
                 }
                 $(this).remove();
                 if(that.searchText === "{}"){
-                    $(".search-toolbar").hide();
+                    that.$advancedSortable.find(".search-toolbar").hide();
                 }
                 that.onSort(event)
             })
